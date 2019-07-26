@@ -1,0 +1,12 @@
+代码依赖的库:
+flask_restful
+collections
+jieba_fast (在windows下请用jieba并关闭enable_paralle)
+pymysql
+request
+pickle
+flask
+json
+time
+re
+os
