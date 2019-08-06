@@ -15,7 +15,7 @@ for name in DBS.keys():
     total = {}
     t1=time.time()
     jieba.enable_parallel() #线程不是开得越多越好，得按需求来
-    for i in result:
+    for i in result[:30]:
         curs.execute(SQL[1], [i])
         currency = curs.fetchall()
         if len(currency)>0:
@@ -45,6 +45,7 @@ for name in DBS.keys():
                     else:
                         total[uid]["memo"][key] = value
     final[name] = total
+    print(final)
 pickle.dump(final, open(PATH, "wb"), protocol=2)
 requests.get("http://127.0.0.1:5000/reload")
 t2=time.time()

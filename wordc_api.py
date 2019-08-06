@@ -19,15 +19,15 @@ class Reload(Resource):
     def get(self):
         global diction
         diction = pickle.load(open(PATH, "rb"))
-        print("dictionary updated")
-        print(diction["GO"].keys())
 
 class Ask_freq(Resource):
     def get(self):
+        global diction
         r = {"code": 500, "data": ""}
         js = {"source": request.args.get("source"), "id": request.args.get("id"), "method": request.args.get("method")}
-        print(js)
-        if js["source"] not in DBS.keys() or js["id"] not in diction.keys() or js["method"] not in ["name", "memo"]:
+        if js["source"] not in DBS.keys():
+            r["data"] = "Invalid database request!"
+        elif js["id"] not in diction[js["source"]].keys() or js["method"] not in ["name", "memo"]:
             r["data"] = "Invalid company id or command!"
         else:
             r["code"] = 200
