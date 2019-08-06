@@ -3,11 +3,7 @@ flask_restful
 collections
 jieba_fast (在windows下请用jieba并关闭enable_paralle)
 pymysql
-request
 pickle
 flask
-fcntl
 json
-time
 re
-os

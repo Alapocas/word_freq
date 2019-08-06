@@ -1,5 +1,5 @@
 #coding:utf-8
-import pymysql, json, time, re, pickle, os, collections, math, fcntl, requests
+import pymysql, json, time, re, pickle, os, collections, math, requests
 import jieba_fast as jieba
 #import jieba #用windows跑的时候请在读文件的时候加上encoding参数并修改jieba库的使用
 jieba.initialize()

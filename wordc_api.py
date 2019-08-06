@@ -4,7 +4,7 @@ from flask_restful import reqparse, abort, Api, Resource
 from flask_restful.representations.json import output_json
 from flask_cors import CORS
 
-import os, json,threading, pickle, fcntl
+import os, json,threading, pickle
 from load import diction
 from key import PATH, DBS
 
