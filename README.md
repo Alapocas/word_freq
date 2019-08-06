@@ -13,6 +13,7 @@ wordc_api的后台运行：可以使用supervisor配置文件在后台自动执�
 - flask_restful
 - collections
 - jieba_fast (在windows下请用jieba并关闭enable_paralle())
+- requests
 - pymysql
 - pickle
 - flask
