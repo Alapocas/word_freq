@@ -24,14 +24,15 @@ class Ask_freq(Resource):
     def get(self):
         global diction
         r = {"code": 500, "data": ""}
-        js = {"source": request.args.get("source"), "id": request.args.get("id"), "method": request.args.get("method")}
+        js = {"source": request.args.get("source"), "id": request.args.get("id"), "currency": request.args.get("currency"), "method": request.args.get("method")}
+        uid = js["id"]+","+js["currency"]
         if js["source"] not in DBS.keys():
             r["data"] = "Invalid database request!"
-        elif js["id"] not in diction[js["source"]].keys() or js["method"] not in ["name", "memo"]:
+        elif uid not in diction[js["source"]].keys() or js["method"] not in ["name", "memo"]:
             r["data"] = "Invalid company id or command!"
         else:
             r["code"] = 200
-            r["data"] = diction[js["source"]][js["id"]][js["method"]]
+            r["data"] = diction[js["source"]][uid][js["method"]]
         return r
 
 api.add_resource(Ask_freq, "/frequency")
@@ -41,14 +42,14 @@ api.add_resource(Reload, "/reload")
 def ask():
     result = ""
     if request.method == "POST":
-        req = {"id": str(request.form["id"]), "method": str(request.form["method"])}
-        result = post('http://localhost:5000/frequency?id={}&method={}'.format(req["id"], req["method"])).json()
+        req = {"source": str(request.form["source"]), "id": str(request.form["id"]), "currency": str(request.form["currency"]), "method": str(request.form["method"])}
+        result = post('http://localhost:5000/frequency?source={}&id={}&currency={}&method={}'.format(req["source"], req["id"], req["currency"], req["method"])).json()
         return render_template("./ask.html", freq = result)
     return render_template("./ask.html", freq = result)
 
 def test():
     req = {"id": "133", "method": "memo"}
-    result = get('http://localhost:5000/frequency?id=133&method=memo').json()
+    result = get('http://127.0.0.1:5000/frequency?source=GO&id=133&currency=CNY&method=memo').json()
     print(result)
 
 if __name__ == '__main__':
