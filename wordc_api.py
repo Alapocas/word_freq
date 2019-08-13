@@ -20,6 +20,20 @@ class Reload(Resource):
         global diction
         diction = pickle.load(open(PATH, "rb"))
 
+class Verify(Resource):
+    def get(self):
+        global diction
+        r = {"code": 200, "data": ""}
+        js = {"source": request.args.get("source"), "id": request.args.get("id"), "currency": request.args.get("currency")}
+        uid = js["id"]+","+js["currency"]
+        if js["source"] not in DBS.keys():
+            r["data"] = 0        
+        elif uid not in diction[js["source"]].keys():
+            r["data"] = 0
+        else:
+            r["data"] = 1
+        return r
+
 class Ask_freq(Resource):
     def get(self):
         global diction
@@ -37,6 +51,7 @@ class Ask_freq(Resource):
 
 api.add_resource(Ask_freq, "/frequency")
 api.add_resource(Reload, "/reload")
+api.add_resource(Verify, "/verify")
 
 @app.route("/ask", methods = ["GET", "POST"])
 def ask():
