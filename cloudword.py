@@ -96,6 +96,7 @@ for name in DBS.keys():
             
     final_result[name] = currencies
 pickle.dump(final_result, open(PATH, "wb"), protocol=2)
+# 这里的get更新非常重要 理论上需要监控返回结果 如果更新不成功需要发送邮件或者记录bug日志
 requests.get("http://127.0.0.1:5000/reload")
 t2=time.time()
 with open("/tmp/test.txt", "a") as ff:
