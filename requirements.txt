@@ -1,11 +1,7 @@
-代码依赖的库:
 flask_restful
-collections
 flask_cors
-jieba_fast (在windows下请用jieba并关闭enable_paralle)
+jieba_fast
 requests
 pymysql
-pickle
 flask
-json
-re
+pandas

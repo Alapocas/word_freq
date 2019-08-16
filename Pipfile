@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+pandas = {index = "https://pypi.tuna.tsinghua.edu.cn/simple",version = "*"}
+jieba-fast = {index = "https://pypi.tuna.tsinghua.edu.cn/simple",version = "*"}
+flask = {index = "https://pypi.tuna.tsinghua.edu.cn/simple",version = "*"}
+flask-restful = {index = "https://pypi.tuna.tsinghua.edu.cn/simple",version = "*"}
+pymysql = {index = "https://pypi.tuna.tsinghua.edu.cn/simple",version = "*"}
+request = {index = "https://pypi.tuna.tsinghua.edu.cn/simple",version = "*"}
+requests = {index = "https://pypi.tuna.tsinghua.edu.cn/simple",version = "*"}
+
+[requires]
+python_version = "3.6"

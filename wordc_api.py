@@ -2,14 +2,14 @@ from requests import put, get, post
 from flask import Flask, request, jsonify, redirect, url_for, request, render_template
 from flask_restful import reqparse, abort, Api, Resource
 from flask_restful.representations.json import output_json
-from flask_cors import CORS
+
 
 import os, json,threading, pickle
 from load import diction
 from key import PATH, DBS
 
 app = Flask(__name__)
-CORS(app, resources=r'/*')
+
 
 app.config['RESTFUL_JSON'] = {"ensure_ascii": False, "indent": None, "sort_keys": False}
 app.config["DEFAULT_REPRESENTATIONS"] = [("application/json; charset=utf-8;", output_json)]
